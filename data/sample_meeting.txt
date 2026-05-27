@@ -1,0 +1,7 @@
+Pradeep: We should use Qdrant for vector search.
+
+Rahul: Agreed.
+
+Pradeep: Deployment will happen next Friday.
+
+Rahul: I will handle deployment.
