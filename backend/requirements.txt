@@ -1,0 +1,22 @@
+# API Framework
+fastapi
+uvicorn[standard]
+
+# Environment Management
+python-dotenv
+
+# Data Validation
+pydantic
+pydantic-settings
+
+# Database
+sqlalchemy
+alembic
+psycopg2-binary
+
+# Cache / Queue
+redis
+
+# HTTP Client
+httpx
+requests
