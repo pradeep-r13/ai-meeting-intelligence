@@ -1,0 +1,15 @@
+# Frontend Framework
+streamlit
+
+# Visualization
+plotly
+
+# API Communication
+requests
+httpx
+
+# Data Handling
+pandas
+
+# Environment Variables
+python-dotenv
