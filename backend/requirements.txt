@@ -20,3 +20,9 @@ redis
 # HTTP Client
 httpx
 requests
+
+# Development Tools
+
+pytest
+black
+ruff

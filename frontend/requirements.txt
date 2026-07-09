@@ -13,3 +13,9 @@ pandas
 
 # Environment Variables
 python-dotenv
+
+# Development Tools
+
+pytest
+black
+ruff
