@@ -11,7 +11,8 @@ pydantic-settings
 
 # Database
 sqlalchemy
-alembic
+asyncpg     
+alembic     
 psycopg2-binary
 
 # Cache / Queue
@@ -22,7 +23,7 @@ httpx
 requests
 
 # Development Tools
-
 pytest
+pytest-asyncio
 black
 ruff
