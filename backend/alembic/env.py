@@ -7,7 +7,10 @@ import sys
 from pathlib import Path
 
 from app.core.config import settings
-from app.database.models import Base
+
+from app.database.base import Base
+from app.database.models import User
+
 
 sys.path.append(
     str(Path(__file__).resolve().parents[1])
