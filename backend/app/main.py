@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-from backend.alembic.api.routes import health
-from backend.alembic.api.routes import users
+from backend.app.api.routes import health
+from backend.app.api.routes import users
 
 from app.core.logging import setup_logging, logger
 
