@@ -70,5 +70,10 @@ class Meeting(Base):
 
     transcripts = relationship(
         "Transcript",
-        back_populates="meeting"
+        back_populates="meetings"
+    )
+
+    decisions = relationship(
+        'Decision',
+        back_populates='meetings'
     )
