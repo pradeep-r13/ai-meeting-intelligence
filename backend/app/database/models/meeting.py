@@ -67,3 +67,8 @@ class Meeting(Base):
         "User",
         back_populates="meetings"
     )
+
+    transcripts = relationship(
+        "Transcript",
+        back_populates="meeting"
+    )
