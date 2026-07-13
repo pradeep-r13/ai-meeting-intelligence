@@ -10,8 +10,8 @@ async def test_database_connection():
 
     async with engine.begin() as conn:
 
-        result = await conn.execute(
-            text("SELECT 1")
+        result = await conn.exec_driver_sql(
+            "SELECT 1"
         )
 
     assert result is not None

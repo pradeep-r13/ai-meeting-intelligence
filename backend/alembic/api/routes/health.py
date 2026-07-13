@@ -1,5 +1,4 @@
 from fastapi import APIRouter, FastAPI
-from fastapi.routing import APIRoute
 
 from app.core.logging import logger
 
