@@ -65,15 +65,20 @@ class Meeting(Base):
 
     owner = relationship(
         "User",
-        back_populates="meetings"
+        back_populates="meeting"
     )
 
     transcripts = relationship(
         "Transcript",
-        back_populates="meetings"
+        back_populates="meeting"
     )
 
     decisions = relationship(
         'Decision',
-        back_populates='meetings'
+        back_populates='meeting'
+    )
+
+    tasks = relationship(
+        'Task',
+        back_populates='meeting'
     )
