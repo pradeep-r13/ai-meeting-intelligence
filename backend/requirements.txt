@@ -7,6 +7,7 @@ python-dotenv
 
 # Data Validation
 pydantic
+pydantic[email]
 pydantic-settings
 
 # Database
@@ -20,6 +21,7 @@ redis
 
 # HTTP Client
 httpx
+httpx2
 requests
 
 # Development Tools

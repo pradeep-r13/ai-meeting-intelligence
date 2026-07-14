@@ -1,39 +1,50 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
-from backend.app.api.routes import health
-from backend.app.api.routes import users
+from app.core.config import settings
+from app.api.routes import health
+from app.api.routes import users
 
-from app.core.logging import setup_logging, logger
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
 
-setup_logging()
+    print(
+        f"{settings.APP_NAME} started successfully"
+    )
+
+    yield
+
+    print(
+        "Application shutdown"
+    )
 
 
 app = FastAPI(
-    title='AI Meeting Intelligence & Decision Tracker',
-    description='Enterprise AI meeting platform',
-    version='1.0.0'
+    title=settings.APP_NAME,
+    version=settings.APP_VERSION,
+    lifespan=lifespan
 )
 
-logger.info('AI Meeting Intelligence Backend Started ')
 
+@app.get("/")
+async def root():
 
-@app.get('/')
-def root():
     return {
-        'message': 'AI Meeting Intelligence Backend Running'
+        "message": "AI Meeting Intelligence API Running"
     }
 
 
 app.include_router(
-    router=health.router,
-    prefix='',
-    tags=['Health']
+    health.router,
+    prefix="/api/v1",
+    tags=["Health"]
 )
 
 
 app.include_router(
-    router=users.router,
-    prefix='',
-    tags=['Users']
+    users.router,
+    prefix="/api/v1/users",
+    tags=["Users"]
 )

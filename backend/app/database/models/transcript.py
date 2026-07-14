@@ -46,8 +46,8 @@ class Transcript(Base):
     )
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        default=lambda: datetime.now(timezone.utc)
+        DateTime(timezone=False),
+        default=datetime.now
     )
 
     meeting = relationship(

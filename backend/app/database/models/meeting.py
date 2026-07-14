@@ -46,19 +46,19 @@ class Meeting(Base):
     )
 
     meeting_date: Mapped[datetime] = mapped_column(
-        DateTime,
-        default=timezone.utc
+        DateTime(timezone=False),
+        default=datetime.now
     )
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        default=timezone.utc
+        DateTime(timezone=False),
+        default=datetime.now
     )
 
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        default=timezone.utc,
-        onupdate=timezone.utc
+        DateTime(timezone=False),
+        default=datetime.now,
+        onupdate=datetime.now
     )
 
     # Relationship with User

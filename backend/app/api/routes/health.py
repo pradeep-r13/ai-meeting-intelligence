@@ -1,17 +1,14 @@
-from fastapi import APIRouter, FastAPI
-
-from app.core.logging import logger
-
+from fastapi import APIRouter
+from datetime import datetime, timezone
 
 router = APIRouter()
 
 
 @router.get('/health')
-def health_check():
-
-    logger.info('Health check API called')
+async def health_check():
 
     return {
         'status': 'healthy',
-        'service': 'backend'
+        'service': 'AI Meeting Intelligence API',
+        'timestamp': datetime.now(timezone.utc)
     }
