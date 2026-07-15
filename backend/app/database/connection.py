@@ -1,12 +1,13 @@
 from sqlalchemy.ext.asyncio import (
     create_async_engine,
     AsyncSession,
-    async_sessionmaker
+    async_sessionmaker,
 )
 
+from sqlalchemy.pool import NullPool
 
 from app.core.config import settings
-from sqlalchemy.pool import NullPool
+
 
 DATABASE_URL = (
     f"postgresql+asyncpg://"
@@ -17,23 +18,29 @@ DATABASE_URL = (
     f"{settings.POSTGRES_DB}"
 )
 
+
 # Async Database Engine
 engine = create_async_engine(
-    url=DATABASE_URL,
+    DATABASE_URL,
     poolclass=NullPool,
-    pool_pre_ping=True
+    pool_pre_ping=True,
+    echo=False
 )
+
 
 # Async Session Factory
 async_session = async_sessionmaker(
     bind=engine,
     class_=AsyncSession,
-    expire_on_commit=False
+    expire_on_commit=False,
 )
 
 
-# Dependency ke liye use hoga
+# FastAPI Dependency
 async def get_session():
 
     async with async_session() as session:
-        yield session
+        try:
+            yield session
+        finally:
+            await session.close()

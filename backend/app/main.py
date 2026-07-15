@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from app.core.config import settings
 from app.api.routes import health
 from app.api.routes import users
+from app.api.routes.meetings import router as meeting_router
 
 
 @asynccontextmanager
@@ -47,4 +48,9 @@ app.include_router(
     users.router,
     prefix="/api/v1/users",
     tags=["Users"]
+)
+
+app.include_router(
+    meeting_router,
+    prefix="/api/v1"
 )
