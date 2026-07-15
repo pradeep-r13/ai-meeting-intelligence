@@ -61,14 +61,14 @@ class Task(Base):
     )
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=False),
-        default=datetime.now
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc)
     )
 
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=False),
-        default=datetime.now,
-        onupdate=datetime.now
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc),
+        onupdate=lambda: datetime.now(timezone.utc)
     )
 
     # Relationshipe with Meeting

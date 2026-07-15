@@ -42,12 +42,13 @@ class User(Base):
     )
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=False),
-        default=datetime.now,
-        onupdate=datetime.now
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc),
+        onupdate=lambda: datetime.now(timezone.utc)
     )
 
     meeting = relationship(
         'Meeting',
-        back_populates='owner'
+        back_populates='owner',
+        cascade="all, delete"
     )

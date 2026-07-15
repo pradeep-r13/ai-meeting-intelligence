@@ -49,8 +49,8 @@ class Decision(Base):
     )
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=False),
-        default=datetime.now
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc)
     )
 
     # Relationship with meeting

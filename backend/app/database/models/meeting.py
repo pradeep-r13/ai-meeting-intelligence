@@ -11,8 +11,6 @@ from sqlalchemy import (
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database.base import Base
 
-from app.database.models.user import User
-
 
 class Meeting(Base):
 
@@ -46,19 +44,19 @@ class Meeting(Base):
     )
 
     meeting_date: Mapped[datetime] = mapped_column(
-        DateTime(timezone=False),
-        default=datetime.now
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc)
     )
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=False),
-        default=datetime.now
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc)
     )
 
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=False),
-        default=datetime.now,
-        onupdate=datetime.now
+        DateTime(timezone=True),
+        default=lambda: datetime.now(timezone.utc),
+        onupdate=lambda: datetime.now(timezone.utc)
     )
 
     # Relationship with User
@@ -70,15 +68,18 @@ class Meeting(Base):
 
     transcripts = relationship(
         "Transcript",
-        back_populates="meeting"
+        back_populates="meeting",
+        cascade="all, delete"
     )
 
     decisions = relationship(
         'Decision',
-        back_populates='meeting'
+        back_populates='meeting',
+        cascade="all, delete"
     )
 
     tasks = relationship(
         'Task',
-        back_populates='meeting'
+        back_populates='meeting',
+        cascade="all, delete"
     )
