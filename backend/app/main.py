@@ -4,6 +4,7 @@ from app.api.routes.users import router as users_router
 from app.api.routes.meetings import router as meetings_router
 from app.api.routes.transcripts import router as transcripts_router
 from app.api.routes.decisions import router as decisions_router
+from app.api.routes.tasks import router as tasks_router
 
 app = FastAPI(
     title="AI Meeting Intelligence",
@@ -27,6 +28,11 @@ app.include_router(
 
 app.include_router(
     decisions_router,
+    prefix="/api/v1"
+)
+
+app.include_router(
+    tasks_router,
     prefix="/api/v1"
 )
 

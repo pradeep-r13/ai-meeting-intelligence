@@ -1,22 +1,25 @@
-from datetime import date, datetime, timezone
+from datetime import datetime, timezone
 from uuid import UUID, uuid4
 
 from sqlalchemy import (
-    Text,
     String,
-    Date,
+    Text,
     DateTime,
-    ForeignKey
+    ForeignKey,
 )
 
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import (
+    Mapped,
+    mapped_column,
+    relationship,
+)
 
 from app.database.base import Base
 
 
 class Task(Base):
 
-    __tablename__ = 'tasks'
+    __tablename__ = "tasks"
 
     id: Mapped[UUID] = mapped_column(
         primary_key=True,
@@ -25,7 +28,7 @@ class Task(Base):
     )
 
     meeting_id: Mapped[UUID] = mapped_column(
-        ForeignKey('meetings.id'),
+        ForeignKey("meetings.id"),
         nullable=False,
         index=True
     )
@@ -40,24 +43,24 @@ class Task(Base):
         nullable=True
     )
 
-    assigned_to: Mapped[str] = mapped_column(
-        String(100),
+    assigned_to: Mapped[str | None] = mapped_column(
+        String(255),
         nullable=True
     )
 
-    status: Mapped[str] = mapped_column(
-        String(50),
-        default='pending'
+    due_date: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True),
+        nullable=True
     )
 
     priority: Mapped[str] = mapped_column(
-        String(50),
-        default='medium'
+        String(20),
+        default="medium"
     )
 
-    due_date: Mapped[date | None] = mapped_column(
-        Date,
-        nullable=True
+    status: Mapped[str] = mapped_column(
+        String(30),
+        default="pending"
     )
 
     created_at: Mapped[datetime] = mapped_column(
@@ -71,8 +74,7 @@ class Task(Base):
         onupdate=lambda: datetime.now(timezone.utc)
     )
 
-    # Relationshipe with Meeting
     meeting = relationship(
-        'Meeting',
-        back_populates='tasks'
+        "Meeting",
+        back_populates="tasks"
     )

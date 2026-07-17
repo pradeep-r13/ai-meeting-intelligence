@@ -80,5 +80,5 @@ class Meeting(Base):
     tasks = relationship(
         'Task',
         back_populates='meeting',
-        cascade="all, delete"
+        cascade="all, delete-orphan"
     )
