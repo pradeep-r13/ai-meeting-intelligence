@@ -69,13 +69,12 @@ class Meeting(Base):
     transcripts = relationship(
         "Transcript",
         back_populates="meeting",
-        cascade="all, delete"
+        cascade="all, delete-orphan"
     )
-
     decisions = relationship(
-        'Decision',
-        back_populates='meeting',
-        cascade="all, delete"
+        "Decision",
+        back_populates="meeting",
+        cascade="all, delete-orphan"
     )
 
     tasks = relationship(

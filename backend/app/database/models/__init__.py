@@ -8,5 +8,6 @@ from app.database.models.task import Task
 __all__ = [
     "User",
     "Meeting",
-    "Transcript"
+    "Transcript",
+    "Decision",
 ]
