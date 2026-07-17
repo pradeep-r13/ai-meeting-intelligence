@@ -25,7 +25,10 @@ from app.services.user_service import (
 )
 
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/users",
+    tags=["Users"]
+)
 
 
 # CREATE USER

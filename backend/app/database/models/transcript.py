@@ -40,7 +40,12 @@ class Transcript(Base):
         nullable=False
     )
 
-    timestamp: Mapped[str] = mapped_column(
+    start_time: Mapped[float] = mapped_column(
+        Float,
+        nullable=False
+    )
+
+    end_time: Mapped[float] = mapped_column(
         Float,
         nullable=False
     )
