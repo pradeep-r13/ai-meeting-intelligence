@@ -59,3 +59,26 @@ class TaskOutput(BaseModel):
         ...,
         description="Generated list of tasks"
     )
+
+
+class VerificationOutput(BaseModel):
+
+    is_valid: bool = Field(
+        ...,
+        description="Whether generated meeting intelligence is valid"
+    )
+
+    issues: list[str] = Field(
+        default_factory=list,
+        description="List of detected issues"
+    )
+
+    confidence: float = Field(
+        ...,
+        description="Overall verification confidence score between 0 and 1"
+    )
+
+    needs_human_review: bool = Field(
+        ...,
+        description="Whether human review is required"
+    )
