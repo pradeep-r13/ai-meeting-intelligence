@@ -23,6 +23,9 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ALGORITHM: str
 
+    GROQ_API_KEY: str
+    GROQ_MODEL: str
+
     model_config = SettingsConfigDict(
         env_file=".env"
     )

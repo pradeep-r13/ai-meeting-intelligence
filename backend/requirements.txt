@@ -29,3 +29,29 @@ pytest
 pytest-asyncio
 black
 ruff
+
+# LangChain Core
+langchain
+langchain-community
+langchain-core
+langchain-text-splitters
+
+# LangGraph
+langgraph
+
+# Groq Integration
+langchain-groq
+
+# Ollama Integration
+langchain-ollama
+
+# OpenAI Integration
+langchain-openai
+openai
+
+# Anthropic Integration
+langchain-anthropic
+
+# Google Gemini Integration
+langchain-google-genai
+google-generativeai
